@@ -3,7 +3,7 @@ pragma solidity ^0.4.4;
 contract SolidityNinja {
 
 	// name of the ninja
-	string public name;
+	string name;
 
 	// owner of the contract
 	address owner;
@@ -23,6 +23,10 @@ contract SolidityNinja {
 	function SolidityNinja() {
 		name = 'Satoshi Nakamoto';
 		owner = msg.sender;
+	}
+
+	function getName() constant returns(string) {
+		return name;
 	}
 
 	function getOwner() constant returns(address) {
