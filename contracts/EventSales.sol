@@ -6,21 +6,29 @@ contract EventSales {
 	uint public constant price = 1 ether;
 	mapping (address => uint) public buyers;
 	address public owner;
+	uint initBlock;
+	// assuming 20s per block, its about 4320 blocks mined in a day.
+	uint constant dueBlock = 30;
 
 	// log ticket params before transaction
-	event buyingTicket(address buyer,uint no_of_tickets, uint total_price);
+	event logBuyingTicket(address buyer,uint no_of_tickets, uint total_price);
 
 	// log ticket params after transaction.
-	event boughtTicket(address buyer,uint no_of_tickets, uint total_price);
+	event logBoughtTicket(address buyer,uint no_of_tickets, uint total_price);
 
 	// constructor
 	function EventSales() {
 		owner = msg.sender;
+		initBlock = block.number;
 	}
 
 	// where n is the number of tickets
 	function buyTickets(uint n) payable {
-		buyingTicket(msg.sender, n, msg.value);
+
+		// Make sure event is not expired before we run this
+		require(isEventExpired() == false);
+
+		logBuyingTicket(msg.sender, n, msg.value);
 
 		// user cannot send more or less than 1 eth for each ticket
 		require(msg.value == n*price);
@@ -36,10 +44,11 @@ contract EventSales {
 
 		// if tickets is all sold out, we cash out everything to the owner
 		if (tickets == 0) {
-			selfdestruct(owner);
+			kill();
 		}
 	}
 
+	// allows user to cancel their ticket and refund
 	// where n is the number of tickets
 	function refund(uint n) {
 		// user cannot refund more tickets than they have
@@ -52,10 +61,30 @@ contract EventSales {
 		msg.sender.transfer(n*price);
 	}
 
+	// check if event is still on
+	function isEventExpired() returns (bool){
+		if (block.number > initBlock + dueBlock) {
+			return true;
+		}
+		return false;
+	}
+
 	// returns contract balace atm
 	function getContractBalance() returns(uint) {
 		return this.balance;
 	}
+
+	// owner can terminate contract after it expires
+	function ownerTerminate() {
+		require(isEventExpired() == true);
+		require(msg.sender == owner);
+		kill();
+	}
+	// kill contract internally
+	function kill() internal {
+		selfdestruct(owner);
+	}
+
 	// what if people send money to this contract? Automatically buys ticket or not?
 	function () payable {
 		// buyTickets(1);

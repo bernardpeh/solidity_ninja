@@ -97,11 +97,14 @@ Inspect transactions with eth explorer.
 ## Business Rules
 
 * Number of tickets capped at 20.
+* The event runs for 30 blocks(10 mins if each block is 20s).
 * Price of each ticket is 10 ether. Buyer cannot pay less or more than that for each ticket.
 * Contract holding amount should be easily available to anyone anytime.
-* Contract owner can refund any buyer.
-* Contract owner can easily refund everyone if he decides to cancel the event.
-* Contract owner will automatically get the funds once the ticket is sold out.
+* Buyer can cancel their payment and be refunded before the contract expires.
+* Contract will be automatically terminated once the ticket is sold out and contract balance tranferred to the owner.
+* Buyers cannot buy anymore tickets after the event has expired even if ticket is still not sold out.
+* Alternatively, contract owner can terminate the contract manually after it has expired.
+* The contract cannot be pre-maturely terminated otherwise.
 
 ## Unit Tests
 * initial number of tickets should be 20.
@@ -113,9 +116,8 @@ Inspect transactions with eth explorer.
 * should not allow acct1 to refund 3 tickets.
 * should allow acct1 to refund 1 ticket and contract balance should be 1 ether and remaining tickets become 19.
 * should allow acct2 to send 2.5 ether to the contract and the contract balance should be 3.5 ether and total ticket is still 19.
-* should allow acct3 to buy 19 tickets and contract should no longer be available. 
+* should allow acct3 to buy 19 tickets and contract should be destroyed (owner, ticket, price and buyers should be set to 0).
 * acct0 should have 122.5 eth, acct1 have 99 ether and acct2 have 78.5 ether remaining
-
 
 # References
 
