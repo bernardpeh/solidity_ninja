@@ -10,9 +10,11 @@ Solidity scripts are usually short but the emphasis is on security.
 
 ## Prerequisites
 
-1. Install truffle
+1. Install [truffle](https://github.com/trufflesuite/truffle)
 
-2. Install testrpc
+2. Install [testrpc](https://github.com/ethereumjs/testrpc)
+
+3. Install [ether explorer](https://github.com/etherparty/explorer)
 
 3. git clone git@github.com:bernardpeh/solidity_ninja.git
 
@@ -60,29 +62,62 @@ Private Keys
 truffle migrate
 ```
 
-## Truffle Console
+# Tutorial 1 - Basics
 
-To verify that everything is installed correctly, in the same terminal
+## Objectives
 
-```
-truffle console
-```
+Create a basic smart contract
 
-Then run the following commands
+Try coding it at https://remix.ethereum.org
 
-```
+## Business Rules:
 
-// getName
-SolidityNinja.deployed().then(function(ins) {ins.name.call().then(function(r){console.log(r)})})
+* Contract should have an owner (name and address)
+* Owner's name and address should be updatable.
 
-// setname and get the logged result
-SolidityNinja.deployed().then(function(ins) {ins.setName('ali baba').then(function(res) {console.log(res.logs[0].args.name)} )})
+## Unit Tests
 
-// get owner
-SolidityNinja.deployed().then(function(ins) {ins.getOwner.call().then(function(r){console.log(r)})})
+* should get the right initial owner's name
+* should get the right inital owner's address
+* should set the name correctly
+* should set acct1 as new owner
+* should not set acct1 as new owner if owner is already acct1
+* should not be able to set acct2 as new owner if owner is now acct0
 
-// setowner to acct 1
-SolidityNinja.deployed().then(function(ins) {ins.setOwner('0x028a966c9680f941faf58a9f293167280b6b1764', {from: '0x293da2ded324c4f5e335fe75f17afd1801736b21'})})
-```
+# Tutorial 2 - Event Sales
 
-If you can explain what is going on with the commands above, you are close to becoming a ninja.
+## Objectives
+
+Create a smart contract to sell tickets for a event.
+
+Try coding it at https://remix.ethereum.org
+
+Inspect transactions with eth explorer.
+
+## Business Rules
+
+* Number of tickets capped at 20.
+* Price of each ticket is 10 ether. Buyer cannot pay less or more than that for each ticket.
+* Contract holding amount should be easily available to anyone anytime.
+* Contract owner can refund any buyer.
+* Contract owner can easily refund everyone if he decides to cancel the event.
+* Contract owner will automatically get the funds once the ticket is sold out.
+
+## Unit Tests
+* initial number of tickets should be 20.
+* initial constant price should be 1 ether.
+* initial owner should be acct0.
+* should not allow successful purchase when acct1 purchase 21 tickets.
+* should not allow successful purchase when acct1 pays 2 ether for 3 tickets.
+* should allow successful purchase when acct1 pays 2 ether for 2 tickets and contract balance should be 2 ether and remaining tickets become 18;
+* should not allow acct1 to refund 3 tickets.
+* should allow acct1 to refund 1 ticket and contract balance should be 1 ether and remaining tickets become 19.
+* should allow acct2 to send 2.5 ether to the contract and the contract balance should be 3.5 ether and total ticket is still 19.
+* should allow acct3 to buy 19 tickets and contract should no longer be available. 
+* acct0 should have 122.5 eth, acct1 have 99 ether and acct2 have 78.5 ether remaining
+
+
+# References
+
+* [Solidity Doc](https://solidity.readthedocs.io/en/develop/)
+* [Truffle framework](http://truffleframework.com/docs/getting_started/contracts)

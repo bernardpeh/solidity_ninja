@@ -1,6 +1,6 @@
-var sn = artifacts.require("./SolidityNinja.sol");
+var sn = artifacts.require("./Basics.sol");
 
-contract('TestSolidityNinja', function(accounts) {
+contract('TestBasics', function(accounts) {
 
 	function getName() {
     return sn.deployed().then(function(ins) {

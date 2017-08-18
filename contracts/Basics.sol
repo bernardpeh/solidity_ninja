@@ -1,6 +1,6 @@
 pragma solidity ^0.4.4;
 
-contract SolidityNinja {
+contract Basics {
 
 	// name of the ninja
 	string name;
@@ -20,7 +20,7 @@ contract SolidityNinja {
 		_;
 	}
 
-	function SolidityNinja() {
+	function Basics() {
 		name = 'Satoshi Nakamoto';
 		owner = msg.sender;
 	}

@@ -1,5 +1,7 @@
-var SolidityNinja = artifacts.require("./SolidityNinja.sol");
+var Basics = artifacts.require("./Basics.sol");
+var EventSales = artifacts.require("./EventSales.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(SolidityNinja);
+  deployer.deploy(Basics);
+  deployer.deploy(EventSales);
 };
