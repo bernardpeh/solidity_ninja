@@ -8,7 +8,7 @@ contract Basics {
 	// owner of the contract
 	address owner;
 
-	event changeName(string name);
+	event changeName(string new_name);
 
 	event changeOwner(address original_owner, address new_owner);
 
