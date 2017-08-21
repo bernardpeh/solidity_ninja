@@ -119,6 +119,22 @@ Inspect transactions with eth explorer.
 * should allow acct3 to buy 19 tickets and contract should be destroyed (owner, ticket, price and buyers should be set to 0).
 * acct0 should have 122.5 eth, acct1 have 99 ether and acct2 have 78.5 ether remaining
 
+# Tutorial 3 - Using External Libraries
+
+Use an [external datetime library](https://github.com/pipermerriam/ethereum-datetime) to get the current day, month and year with current timestamp.
+
+Create a new truffle project called DateTime with this contract and deploy to the testrpc network.
+
+Create another truffle project with a contract called GetDatetime and access DateTime Library via its deployed address. 
+
+## Business Rules
+
+* Get current day, month and year with the unix timestamp 1503282547
+
+## Unit Test
+
+* current day should be 21, month should be 8, year should be 2017.
+
 # References
 
 * [Solidity Doc](https://solidity.readthedocs.io/en/develop/)
