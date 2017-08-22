@@ -9,11 +9,10 @@ contract GetDateTime {
     uint public day;
     uint public month;
     // address of deployed datetime library. Use your own
-    address datetime = 0x595e59696c957ab383d59f40d9e25ce1602a5fa7;
+    address datetime = 0xa63faa64411daad940c8c83bfdcb54f462cd8dfe;
+    DateTimeAPI dt = DateTimeAPI(datetime);
 
     function GetDateTime() {
-
-        DateTimeAPI dt = DateTimeAPI(datetime);
         year = dt.getYear(timestamp);
         month = dt.getMonth(timestamp);
         day = dt.getDay(timestamp);

@@ -1,10 +1,10 @@
 # About
 
-Solidity Ninja is a series of tutorials that turn newbie ethereum solidity developers into ninja in 2 days.
+Solidity Ninja is a series of tutorials that turn newbie ethereum solidity developers into ninja in 5 days.
 
-We won't be able to cover everything in 2 days but enough to get you going and kick some a**.
+We won't be able to cover everything in 5 days but enough to get you going.
 
-Try to understand concepts rather than jumping into the syntax straight away. It will make life a lot easier when you start coding.
+Try to understand concepts rather than jumping into the syntax straight away. It would make life a lot easier when you start coding.
 
 Solidity scripts are usually short but the emphasis is on security.
 
@@ -107,6 +107,7 @@ Inspect transactions with eth explorer.
 * The contract cannot be pre-maturely terminated otherwise.
 
 ## Unit Tests
+
 * initial number of tickets should be 20.
 * initial constant price should be 1 ether.
 * initial owner should be acct0.
@@ -119,21 +120,50 @@ Inspect transactions with eth explorer.
 * should allow acct3 to buy 19 tickets and contract should be destroyed (owner, ticket, price and buyers should be set to 0).
 * acct0 should have 122.5 eth, acct1 have 99 ether and acct2 have 78.5 ether remaining
 
-# Tutorial 3 - Using External Libraries
+# Tutorial 3 - Libraries and Inheritance
 
-Use an [external datetime library](https://github.com/pipermerriam/ethereum-datetime) to get the current day, month and year with current timestamp.
+Useful contracts can be deployed once and reused many times by others.
 
-Create a new truffle project called DateTime with this contract and deploy to the testrpc network.
+Create a contract called GetDateTime to use an [external datetime library](https://github.com/pipermerriam/ethereum-datetime) to get the day, month and year with a timestamp.
 
-Create another truffle project with a contract called GetDatetime and access DateTime Library via its deployed address. 
+Create a child contract of GetDateTime called GetUpgradedDateTime to get hrs and mins as well.
 
 ## Business Rules
 
-* Get current day, month and year with the unix timestamp 1503282547
+* GetDateTime should store the right day, month and year values with the unix timestamp of 1503282547.
+* GetUpgradedDateTime should store the right day, month, yr, hr and mins value with the same unix timestamp 1503282547.
 
 ## Unit Test
 
-* current day should be 21, month should be 8, year should be 2017.
+* For GetDateTime contract, day should be 21, month should be 8, year should be 2017.
+* For GetUpgradedDateTime, day should be 21, month should be 8, year should be 2017, hrs should be 2 and mins should be 29.
+
+# Tutorial 4 - Crowd Funding Project
+
+Create a simple crowd funding platform for users to create, manage and fund projects.
+
+## Business Rules
+
+* Create a contract called Project and it needs to have an owner address, project name, project description, deadline in timestamp and amount to be raised in ether. 
+* Create another contract called ManageProject to allow anyone to create, read, update and delete projects. Only the creator of the project can update and delete the project.
+* Anyone can fund any projects.
+* When a project funding and dateline is reached, it will self destruct, giving all the project ether to the owner. 
+* If the dateline is reached and funding not fulfilled, let individual funders get their funds back.
+
+## Unit Tests
+
+# Tutorial 5 - The frontend
+
+Create a one-pager frontend for tutorial 4 (the crowd funding project).
+
+Users are expected to have metamask installed.
+
+## Business Rules
+
+* All users should see all projects in the browser.
+* All users can create new projects after filling in the compulsory fields.
+* All users can fund any projects using any amount of ether, but not greater than the fund limit set by the project creator.
+* Funded projects should be removed from the listings in the browser.
 
 # References
 
