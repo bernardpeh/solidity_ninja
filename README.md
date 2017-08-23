@@ -126,6 +126,8 @@ Useful contracts can be deployed once and reused many times by others.
 
 Create a contract called GetDateTime to use an [external datetime library](https://github.com/pipermerriam/ethereum-datetime) to get the day, month and year with a timestamp.
 
+
+
 Create a child contract of GetDateTime called GetUpgradedDateTime to get hrs and mins as well.
 
 ## Business Rules
@@ -140,11 +142,11 @@ Create a child contract of GetDateTime called GetUpgradedDateTime to get hrs and
 
 # Tutorial 4 - Crowd Funding Project
 
-Create a simple crowd funding platform for users to create, manage and fund projects.
+Create a simple crowd funding contract for users to create, manage and fund projects.
 
 ## Business Rules
 
-* Create a contract called Project and it needs to have an owner address, project name, project description, deadline in timestamp and amount to be raised in ether. 
+* Create a contract called Project and it needs to have an owner address, project name, project description, deadline in number of blocks from the date of creation and amount to be raised in ether. 
 * Create another contract called ManageProject to allow anyone to create, read, update and delete projects. Only the creator of the project can update and delete the project.
 * Anyone can fund any projects.
 * When a project funding and dateline is reached, it will self destruct, giving all the project ether to the owner. 
