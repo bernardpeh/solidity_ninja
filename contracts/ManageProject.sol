@@ -9,10 +9,11 @@ contract ManageProject {
 	// creator of this project
 	address admin;
 
-	event logCreatedProject(address project_address, address owner, bytes32 project_name, bytes32 project_desc, uint deadline);
+	event logCreatedProject(address _project_address, address _owner, bytes32 _projectName, bytes32 _projectDesc, uint _dueBlock, uint _fundingCap);
 	event logUpdatedProject(uint _id, address _owner, bytes32 _name, bytes32 _description);
 	event logDeletedProject(uint _id);
 	event logFundProject(uint _id, address _funder, uint _value);
+	event logRefundProject(uint _id, address _funder, uint _value);
 
 	// constructor
 	function ManageProject() {
@@ -20,11 +21,11 @@ contract ManageProject {
 	}
 
 	// allows anyone to create new project
-	function createProject(bytes32 _name, bytes32 _desc, uint _deadline) {
-		address contract_address = new Project(msg.sender, _name, _desc, _deadline);
+	function createProject(bytes32 _name, bytes32 _desc, uint _dueBlock, uint _fundingCap) {
+		logCreatedProject(contract_address, msg.sender, _name, _desc, _dueBlock, _fundingCap);
+		address contract_address = new Project(msg.sender, _name, _desc, _dueBlock, _fundingCap);
 		project_counter++;
 		projects[project_counter] = Project(contract_address);
-		logCreatedProject(contract_address, msg.sender, _name, _desc, _deadline);
 	}
 
 	// converts bytes32 to string
@@ -45,19 +46,7 @@ contract ManageProject {
 		return string(bytesStringTrimmed);
 	}
 
-	// get project struct anytime
-	function getProjectStruct(uint _id) returns (address, string, string, uint) {
-		address _owner;
-		bytes32 _name;
-		bytes32 _desc;
-		uint _deadline;
-		(_owner, _name, _desc, _deadline) = projects[_id].getStruct();
-		string memory _sname = bytes32ToString(_name);
-		string memory _sdesc = bytes32ToString(_desc);
-		return (_owner, _sname, _sdesc, _deadline);
-	}
-
-	// project owner can update their own projects
+	// project owner can update their own projects - name and desc only.
 	function updateProjectStruct(uint _id, bytes32 _name, bytes32 _description) {
 		projects[_id].updateStruct(msg.sender, _name, _description);
 		logUpdatedProject(_id, msg.sender, _name, _description);
@@ -73,10 +62,17 @@ contract ManageProject {
 
 	// returns total funded
 	function fund(uint _id) payable returns (uint) {
-		// note the syntax for sending payment from a contract
+		// note the syntax for sending payment from a contract in wei
+		uint total = projects[_id].fund.value(msg.value)(msg.sender);
+		// log fund
 		logFundProject(_id, msg.sender, msg.value);
-		// whats the problem with this?
-		return projects[_id].fund.value(msg.value - 500000)(msg.sender);
+		return total;
+	}
+
+	function refund(uint _id) payable {
+		projects[_id].refund(msg.sender);
+		// log refund
+		logRefundProject(_id, msg.sender, msg.value);
 	}
 
 	// get funder
@@ -86,7 +82,18 @@ contract ManageProject {
 
 	// returns project current balance
 	function getProjectBalance(uint _id) returns (uint) {
-		projects[_id].getBalance();
+		return projects[_id].getBalance();
+	}
+
+	function getStruct(uint _id) returns (address, string, string, uint, uint) {
+		address _owner;
+		bytes32 _name;
+		bytes32 _desc;
+		uint  _dueBlock;
+		uint _fundingCap;
+
+		(_owner, _name, _desc, _dueBlock, _fundingCap) = projects[_id].getStruct();
+		return (_owner, bytes32ToString(_name), bytes32ToString(_desc), _dueBlock, _fundingCap);
 	}
 
 	// current project should not store any money. so it should always be 0.
@@ -94,15 +101,15 @@ contract ManageProject {
 		return this.balance;
 	}
 
-	// fallback. sorry dont accept free money.
+	// fallback. do nothing for now.
 	function () {
 	}
 
 }
 
-// create 2 projects - should see new project created
-// ManageProject.deployed().then(function(ins){ins.createProject('first project', 'this is just a plain description 1', 10).then(function(val) {console.log(val)})})
-// ManageProject.deployed().then(function(ins){ins.createProject('second project', 'this is just a plain description 2', 20).then(function(val) {console.log(val)})})
+// create 2 projects with cap limit of 5 ether - should see new project created
+// ManageProject.deployed().then(function(ins){ins.createProject("first project","desc 1", 200, 5000).then(function(val) {val.logs[args]})})
+// ManageProject.deployed().then(function(ins){ins.createProject("second project","desc 2", 300, 60000).then(function(val) {console.log(val)})})
 
 // get project_counter
 // ManageProject.deployed().then(function(ins){ins.project_counter.call().then(function(val) {console.log(val.toString())}) })
@@ -110,19 +117,25 @@ contract ManageProject {
 // see project 2 address
 // ManageProject.deployed().then(function(ins){ins.projects.call(2).then(function(val){console.log(val)})})
 
+// get project 2 struct.
+// ManageProject.deployed().then(function(ins){ins.getStruct.call(2).then(function(val){console.log(val.toString())})})
+
 // current acct 3 balance
 // web3.fromWei(web3.eth.getBalance(web3.eth.accounts[3]));
 
-// fund project 2 from account 3
-// ManageProject.deployed().then(function(ins){ins.fund.sendTransaction(2, {from: web3.eth.accounts[3], value: 8300000000000000000}).then(function(val){console.log(val)})})
+// fund 3 ether to project 2 from acct3
+// ManageProject.deployed().then(function(ins){ins.fund.sendTransaction(2, {from: web3.eth.accounts[3], value: 3*10**18}).then(function(val){console.log(val)})})
 
-// get funder balance
-// ManageProject.deployed().then(function(ins){ins.getFunder.call(2, web3.eth.accounts[3]).then(function(val){console.log(val)})})
+// get acct3 balance. should be 3 ether.
+// ManageProject.deployed().then(function(ins){ins.getFunder.call(2, web3.eth.accounts[3]).then(function(val){console.log(val.toString())})})
 
-// get project 2 balance. Should be 2200.
-// ManageProject.deployed().then(function(ins){ins.getProjectBalance.call(2).then(function(val){console.log(val)})})
+// get project 2 balance. Should be 3 ether.
+// ManageProject.deployed().then(function(ins){ins.getProjectBalance.call(2).then(function(val){console.log(val.toString())})})
 
 // get current Contract Balance. Should be 0.
-// ManageProject.deployed().then(function(ins){ins.getContractBalance.call().then(function(val){console.log(val)})})
+// ManageProject.deployed().then(function(ins){ins.getContractBalance.call().then(function(val){console.log(val.toString())})})
+
+// acct 3 wants a refund
+// ManageProject.deployed().then(function(ins){ins.refund(2, {from: web3.eth.accounts[3]}).then(function(val){console.log(val)})})
 
 // iterator - https://github.com/szerintedmi/solidity-itMapsLib

@@ -8,6 +8,7 @@ contract EventSales {
 	address public owner;
 	uint initBlock;
 	// assuming 20s per block, its about 4320 blocks mined in a day.
+	// note it is also possible to use block.timestamp in utc
 	uint constant dueBlock = 30;
 
 	// log ticket params before transaction
