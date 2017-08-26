@@ -1,7 +1,7 @@
-var Basics = artifacts.require("./Basics.sol");
-var EventSales = artifacts.require("./EventSales.sol");
+var ManageProject = artifacts.require("./ManageProject.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Basics);
-  deployer.deploy(EventSales);
+  // deployer.deploy(Project);
+  // deployer.link(Project, ManageProject);
+  deployer.deploy(ManageProject);
 };
