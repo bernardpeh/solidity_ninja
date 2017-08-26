@@ -1,8 +1,8 @@
 # About
 
-Solidity Ninja is a series of tutorials that turn newbie ethereum solidity developers into ninja in 5 days.
+Solidity Ninja is a series of 5 tutorials showcasing the power and limitations of the ethereum programing language - solidity.
 
-We won't be able to cover everything in 5 days but enough to get you going.
+The tutorials should be a good learning experience for developers who are new to solidity.
 
 Try to understand concepts rather than jumping into the syntax straight away. It would make life a lot easier when you start coding.
 
@@ -16,7 +16,7 @@ Solidity scripts are usually short but the emphasis is on security.
 
 3. Install [ether explorer](https://github.com/etherparty/explorer)
 
-3. git clone git@github.com:bernardpeh/solidity_ninja.git
+3. git clone git@github.com:bernardpeh/solidity_ninja.git or fork
 
 ## Quick start
 
@@ -56,116 +56,11 @@ Private Keys
 
 ```
 
-2. In a new terminal, deploy contract into master branch
+2. In a separate terminal, start tutorial 1 and follow the readme instructions from there
 
 ```
-truffle migrate
+-> git checkout tut_1 
 ```
-
-# Tutorial 1 - Basics
-
-## Objectives
-
-Create a basic smart contract
-
-Try coding it at https://remix.ethereum.org
-
-## Business Rules:
-
-* Contract should have an owner (name and address)
-* Owner's name and address should be updatable.
-
-## Unit Tests
-
-* should get the right initial owner's name
-* should get the right inital owner's address
-* should set the name correctly
-* should set acct1 as new owner
-* should not set acct1 as new owner if owner is already acct1
-* should not be able to set acct2 as new owner if owner is now acct0
-
-# Tutorial 2 - Event Sales
-
-## Objectives
-
-Create a smart contract to sell tickets for a event.
-
-Try coding it at https://remix.ethereum.org
-
-Inspect transactions with eth explorer.
-
-## Business Rules
-
-* Number of tickets capped at 20.
-* The event runs for 30 blocks(10 mins if each block is 20s).
-* Price of each ticket is 10 ether. Buyer cannot pay less or more than that for each ticket.
-* Contract holding amount should be easily available to anyone anytime.
-* Buyer can cancel their payment and be refunded before the contract expires.
-* Contract will be automatically terminated once the ticket is sold out and contract balance tranferred to the owner.
-* Buyers cannot buy anymore tickets after the event has expired even if ticket is still not sold out.
-* Alternatively, contract owner can terminate the contract manually after it has expired.
-* The contract cannot be pre-maturely terminated otherwise.
-
-## Unit Tests
-
-* initial number of tickets should be 20.
-* initial constant price should be 1 ether.
-* initial owner should be acct0.
-* should not allow successful purchase when acct1 purchase 21 tickets.
-* should not allow successful purchase when acct1 pays 2 ether for 3 tickets.
-* should allow successful purchase when acct1 pays 2 ether for 2 tickets and contract balance should be 2 ether and remaining tickets become 18;
-* should not allow acct1 to refund 3 tickets.
-* should allow acct1 to refund 1 ticket and contract balance should be 1 ether and remaining tickets become 19.
-* should allow acct2 to send 2.5 ether to the contract and the contract balance should be 3.5 ether and total ticket is still 19.
-* should allow acct3 to buy 19 tickets and contract should be destroyed (owner, ticket, price and buyers should be set to 0).
-* acct0 should have 122.5 eth, acct1 have 99 ether and acct2 have 78.5 ether remaining
-
-# Tutorial 3 - Libraries and Inheritance
-
-Useful contracts can be deployed once and reused many times by others.
-
-Create a contract called GetDateTime to use an [external datetime library](https://github.com/pipermerriam/ethereum-datetime) to get the day, month and year with a timestamp.
-
-
-
-Create a child contract of GetDateTime called GetUpgradedDateTime to get hrs and mins as well.
-
-## Business Rules
-
-* GetDateTime should store the right day, month and year values with the unix timestamp of 1503282547.
-* GetUpgradedDateTime should store the right day, month, yr, hr and mins value with the same unix timestamp 1503282547.
-
-## Unit Test
-
-* For GetDateTime contract, day should be 21, month should be 8, year should be 2017.
-* For GetUpgradedDateTime, day should be 21, month should be 8, year should be 2017, hrs should be 2 and mins should be 29.
-
-# Tutorial 4 - Crowd Funding Project
-
-Create a simple crowd funding contract for users to create, manage and fund projects.
-
-## Business Rules
-
-* Create a contract called Project and it needs to have an owner address, project name, project description, deadline in number of blocks from the date of creation and amount to be raised in ether. 
-* Create another contract called ManageProject to allow anyone to create, read, update and delete projects. Only the creator of the project can update and delete the project.
-* Anyone can fund any projects.
-* When a project funding and dateline is reached (whichever comes firstpwd), it will self destruct, giving all the project ether to the project owner. 
-* If the dateline is reached and funding not fulfilled, let individual funders can get their funds back if they wish.
-
-## Unit Tests
-
-# Tutorial 5 - The frontend
-
-Create a one-pager frontend for tutorial 4 (the crowd funding project).
-
-Users are expected to have metamask installed.
-
-## Business Rules
-
-* All users should see all projects in the browser.
-* All users can create new projects after filling in the compulsory fields.
-* All users can fund any projects using any amount of ether, but not greater than the fund limit set by the project creator.
-* Funded projects should be removed from the listings in the browser.
 
 # References
 
