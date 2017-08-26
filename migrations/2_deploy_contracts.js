@@ -1,7 +1,7 @@
-var Basics = artifacts.require("./Basics.sol");
-var EventSales = artifacts.require("./EventSales.sol");
+var GetDateTime = artifacts.require("./GetDateTime.sol");
+var GetUpgradedDateTime = artifacts.require("./GetUpgradedDateTime.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Basics);
-  deployer.deploy(EventSales);
+    deployer.deploy(GetDateTime);
+    deployer.deploy(GetUpgradedDateTime);
 };
