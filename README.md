@@ -4,6 +4,11 @@ Create a one-pager frontend for tutorial 4 (the crowd funding project).
 
 Users are expected to have metamask installed.
 
+Testrpc credentials just in case:
+
+```
+testrpc -m "enlist illness roast pair check danger drill noble dove repeat great margin"
+```
 ## Business Rules
 
 * All users should see all projects in the browser.
