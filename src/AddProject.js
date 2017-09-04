@@ -33,7 +33,7 @@ class AddProject extends Component {
   handleSubmit(e) {
     // dont submit the form.
     e.preventDefault()
-    // let us now re-render the list
+    // get contract
     const contract = require('truffle-contract')
     const manageProject = contract(ManageProjectContract)
     manageProject.setProvider(this.props.state.web3.currentProvider)
@@ -41,23 +41,24 @@ class AddProject extends Component {
     var description = this.state.description
     var due = this.state.due
     var cap = this.state.cap
+
     manageProject.deployed().then( function(ins) {
       var project_ins = ins;
 
-      project_ins.createProject(name, description, due, cap)
+      return project_ins.createProject(name, description, due, cap)
       .then((res) => {
-        // console.log(res.logs[0].args)
         // get project count
         return project_ins.project_counter.call()
       })
       .then ((res) => {
         // project counter atm
-        console.log(res.c[0])
+       this.props.setProjectCounter(res.c[0])
       })
       .catch((err) => {
         console.log(err)
       })
-    })
+    }.bind(this))
+
   }
 
   render() {

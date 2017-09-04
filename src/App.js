@@ -17,8 +17,9 @@ class App extends Component {
       web3: '',
       address: '',
       balance: '',
-      projectList: []
+      projectCounter: 0
     }
+    this.setProjectCounter = this.setProjectCounter.bind(this)
   }
 
   componentWillMount() {
@@ -55,6 +56,10 @@ class App extends Component {
     })
   }
 
+  setProjectCounter(counter) {
+    this.setState({projectCounter: counter})
+  }
+
   render() {
     return (
       <div className="App">
@@ -62,8 +67,8 @@ class App extends Component {
           <h1>Crowdsale Example</h1>
         </div>
         <div className="App-intro">
-          <AddProject state={this.state} />
-          <ProjectList projectList={this.state.projectList}/>
+          <AddProject state={this.state} setProjectCounter={this.setProjectCounter}/>
+          <ProjectList web3={this.state.web3} projectCounter={this.state.projectCounter}/>
         </div>
       </div>
     );
