@@ -42,22 +42,31 @@ class AddProject extends Component {
     var due = this.state.due
     var cap = this.state.cap
 
-    manageProject.deployed().then( function(ins) {
-      var project_ins = ins;
+    // lets do everything only if accounts is ready
+    this.props.state.web3.eth.getAccounts((err, accounts) => {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        manageProject.deployed().then( function(ins) {
+          var project_ins = ins;
 
-      return project_ins.createProject(name, description, due, cap)
-      .then((res) => {
-        // get project count
-        return project_ins.project_counter.call()
-      })
-      .then ((res) => {
-        // project counter atm
-       this.props.setProjectCounter(res.c[0])
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    }.bind(this))
+          return project_ins.createProject(name, description, due, cap)
+            .then((res) => {
+              // get project count
+              return project_ins.project_counter.call()
+            })
+            .then ((res) => {
+              // project counter atm
+              this.props.setProjectCounter(res.c[0])
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }.bind(this))
+      }
+    })
+
 
   }
 

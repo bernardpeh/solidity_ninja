@@ -21,3 +21,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+table {
+  margin: 20px;
+}
+td, th {
+  padding: 5px !important;
+  border: solid 1px;
+}
