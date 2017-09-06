@@ -80,20 +80,16 @@ contract ManageProject {
 		return projects[_id].getFunder(_funder);
 	}
 
-	// returns project current balance
-	function getProjectBalance(uint _id) returns (uint) {
-		return projects[_id].getBalance();
-	}
-
-	function getStruct(uint _id) returns (address, string, string, uint, uint) {
+	function getProjectInfo(uint _id) returns (address, string, string, uint, uint, uint) {
 		address _owner;
 		bytes32 _name;
 		bytes32 _desc;
 		uint  _dueBlock;
 		uint _fundingCap;
+        uint _balance;
 
-		(_owner, _name, _desc, _dueBlock, _fundingCap) = projects[_id].getStruct();
-		return (_owner, bytes32ToString(_name), bytes32ToString(_desc), _dueBlock, _fundingCap);
+		(_owner, _name, _desc, _dueBlock, _fundingCap, _balance) = projects[_id].getProjectInfo();
+		return (_owner, bytes32ToString(_name), bytes32ToString(_desc), _dueBlock, _fundingCap, _balance);
 	}
 
 	// current project should not store any money. so it should always be 0.
@@ -108,7 +104,7 @@ contract ManageProject {
 }
 
 // create 2 projects with cap limit of 5 ether - should see new project created
-// ManageProject.deployed().then(function(ins){ins.createProject("first project","desc 1", 200, 5000).then(function(val) {val.logs[args]})})
+// ManageProject.deployed().then(function(ins){ins.createProject("first project","desc 1", 200, 5000).then(function(val) {console.log(val)})})
 // ManageProject.deployed().then(function(ins){ins.createProject("second project","desc 2", 300, 60000).then(function(val) {console.log(val)})})
 
 // get project_counter
@@ -117,8 +113,8 @@ contract ManageProject {
 // see project 2 address
 // ManageProject.deployed().then(function(ins){ins.projects.call(2).then(function(val){console.log(val)})})
 
-// get project 2 struct.
-// ManageProject.deployed().then(function(ins){ins.getStruct.call(2).then(function(val){console.log(val.toString())})})
+// get project 2 info.
+// ManageProject.deployed().then(function(ins){ins.getProjectInfo.call(2).then(function(val){console.log(val.toString())})})
 
 // current acct 3 balance
 // web3.fromWei(web3.eth.getBalance(web3.eth.accounts[3]));
@@ -128,12 +124,6 @@ contract ManageProject {
 
 // get acct3 balance. should be 3 ether.
 // ManageProject.deployed().then(function(ins){ins.getFunder.call(2, web3.eth.accounts[3]).then(function(val){console.log(val.toString())})})
-
-// get project 2 balance. Should be 3 ether.
-// ManageProject.deployed().then(function(ins){ins.getProjectBalance.call(2).then(function(val){console.log(val.toString())})})
-
-// get current Contract Balance. Should be 0.
-// ManageProject.deployed().then(function(ins){ins.getContractBalance.call().then(function(val){console.log(val.toString())})})
 
 // acct 3 wants a refund
 // ManageProject.deployed().then(function(ins){ins.refund(2, {from: web3.eth.accounts[3]}).then(function(val){console.log(val)})})

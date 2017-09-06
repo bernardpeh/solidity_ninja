@@ -63,7 +63,6 @@ class App extends Component {
   setProjectCounter(counter) {
     this.getBalance()
     this.setState({projectCounter: counter})
-    this.initProjectList();
   }
 
   initProjectList() {
@@ -76,17 +75,20 @@ class App extends Component {
 
       // get project counter
       project_ins.project_counter.call().then((res) => {
-        console.log('project number is '+res.c[0])
         return res.c[0]
       }).then((res) => {
         for (var i=0; i < res+1; i++) {
-          project_ins.getStruct.call(i).then((res) => {
-            this.setState({projectList: [...this.state.projectList, {'address': res[0], 'name': res[1], 'description': res[2], 'due': res[3].c[0], 'funding': res[4].c[0]}]})
+          project_ins.getProjectInfo.call(i).then((res) => {
+            this.setState({projectList: [...this.state.projectList, {'address': res[0], 'name': res[1], 'description': res[2], 'due': res[3].toString(), 'funding': this.state.web3.fromWei(res[4].toString(),'ether'), 'balance': this.state.web3.fromWei(res[5].toString(), 'ether')}]})
           })
         }
       })
 
     }.bind(this))
+  }
+
+  refreshPage() {
+    location.reload()
   }
 
   render() {
@@ -97,6 +99,7 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <AddProject state={this.state} setProjectCounter={this.setProjectCounter}/>
+          <input className="refresh" type="button" value="Refresh List" onClick={this.refreshPage} />
           <ProjectList projectList={this.state.projectList} web3={this.state.web3} projectCounter={this.state.projectCounter}/>
         </div>
       </div>

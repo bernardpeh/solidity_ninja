@@ -24,4 +24,5 @@ same as tutorial 4
 
 * [Solidity Doc](https://solidity.readthedocs.io/en/develop/)
 * [Truffle framework](http://truffleframework.com/docs/getting_started/contracts)
+* [Best Practices](https://github.com/ConsenSys/smart-contract-best-practices)
 

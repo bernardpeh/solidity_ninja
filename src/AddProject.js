@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import ManageProjectContract from '../build/contracts/ManageProject.json'
 
 class AddProject extends Component {
@@ -51,7 +51,7 @@ class AddProject extends Component {
         manageProject.deployed().then( function(ins) {
           var project_ins = ins;
 
-          return project_ins.createProject(name, description, due, cap)
+          return project_ins.createProject(name, description, due, cap * Math.pow(10,18))
             .then((res) => {
               // get project count
               return project_ins.project_counter.call()
@@ -76,12 +76,15 @@ class AddProject extends Component {
         <p>
           Your current wallet address: {this.props.state.address}, balance: {this.props.state.balance}
         </p>
-        <label><strong>Create a new project</strong></label>
+        <label><strong>Create a new project</strong></label><br/>
         <label>Project Name (32 chars max): </label><input type="text" onChange={this.setName.bind(this)} value={this.state.name} /><br/>
         <label>Project Description (32 chars max): </label><input type="text" onChange={this.setDescription.bind(this)} value={this.state.description} /><br/>
         <label>Project Due (in blocks) (numbers only): </label><input type="text" onChange={this.setDue.bind(this)} value={this.state.due} /><br/>
         <label>Funding Cap (in ether) (numbers only): </label><input type="text" onChange={this.setCap.bind(this)} value={this.state.cap} /><br/>
         <input type="submit" />
+        <p className="alert">
+          Validation not implemented yet. Wait for a while and click on "Refresh List" to see project listing updates.
+        </p>
       </form>
     );
   }

@@ -34,9 +34,9 @@ contract Project {
 		ps.description = _description;
 	}
 
-	// for troubleshooting
-	function getStruct() returns (address, bytes32, bytes32, uint, uint) {
-		return (ps.owner, ps.name, ps.description, ps.dueBlock, ps.fundingCap);
+	// for project info
+	function getProjectInfo() returns (address, bytes32, bytes32, uint, uint, uint) {
+		return (ps.owner, ps.name, ps.description, ps.dueBlock, ps.fundingCap, getBalance());
 	}
 
 	// allow anyone to fund the project

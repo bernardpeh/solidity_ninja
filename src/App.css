@@ -22,10 +22,23 @@
   to { transform: rotate(360deg); }
 }
 
-table {
-  margin: 20px;
+.list {
+  padding: 20px;
 }
+
+table {
+  margin: auto;
+}
+
 td, th {
   padding: 5px !important;
   border: solid 1px;
+}
+
+.refresh {
+  margin-top:20px;
+}
+
+.alert {
+  color: red;
 }
