@@ -20,6 +20,12 @@ testrpc -m "enlist illness roast pair check danger drill noble dove repeat great
 
 same as tutorial 4
 
+## Exercises
+
+1. How to calculate the ethereum total transactions per second.
+
+2. Try signing a message with your ethereum private key - https://www.myetherwallet.com/signmsg.html and https://etherscan.io/verifySig
+
 # References
 
 * [Solidity Doc](https://solidity.readthedocs.io/en/develop/)
