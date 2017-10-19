@@ -61,6 +61,12 @@ Private Keys
 ```
 -> git checkout tut_1 
 ```
+# Tips
+
+old remix browser:  https://yann300.github.io
+solidity flatterner: https://github.com/BlockCatIO/solidity-flattener
+Parity is more stable for ropsten
+
 
 # References
 
