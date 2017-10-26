@@ -72,3 +72,4 @@ Parity is more stable for ropsten
 
 * [Solidity Doc](https://solidity.readthedocs.io/en/develop/)
 * [Truffle framework](http://truffleframework.com/docs/getting_started/contracts)
+* [Introduction to Accounts, Transactions and Gas](https://hudsonjameson.com/2017-06-27-accounts-transactions-gas-ethereum/)
