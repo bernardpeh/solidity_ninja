@@ -1,16 +1,30 @@
 # About
 
-Solidity Ninja is a series of 5 tutorials showcasing the power and limitations of the ethereum programing language - solidity.
+Solidity Ninja is a short course showcasing the power and limitations of the ethereum programing language - solidity.
 
-The tutorials should be a good learning experience for developers who are new to solidity.
+This course should be a good learning experience for developers who are new to solidity.
 
-Try to understand concepts rather than jumping into the syntax straight away. It would make life a lot easier when you start coding.
+Try to understand the concepts rather than jumping into the syntax straight away. It would make life a lot easier when you start coding.
 
-Solidity scripts are usually short but the emphasis is on security.
+Solidity looks like javascript but its not and the terminologies can be confusing.
+
+## Course Content
+
+* What is Blockchain, Bitcoin and Ethereum.
+
+* 2 Types of Ethereum Accounts - EOA and CA.
+
+* Transaction vs Messages.
+
+* Gas and GasPrice.
+
+## Exercises
+
+* Send an ether 
 
 ## Prerequisites
 
-1. Install [truffle](https://github.com/trufflesuite/truffle)
+1. Install [truffle](https://github.com/trufflesuite/truffle). 
 
 2. Install [testrpc](https://github.com/ethereumjs/testrpc)
 
@@ -25,7 +39,7 @@ Solidity scripts are usually short but the emphasis is on security.
 testrpc -m "enlist illness roast pair check danger drill noble dove repeat great margin"
 ```
 
-You should get these newly generaeted accounts if your mnemonic seed above is correct.
+You should get these newly generated accounts if your mnemonic seed above is correct.
 
 ```
 
@@ -63,9 +77,9 @@ Private Keys
 ```
 # Tips
 
-old remix browser:  https://yann300.github.io
-solidity flatterner: https://github.com/BlockCatIO/solidity-flattener
-Parity is more stable for ropsten
+* Many people like the old remix browser better:  https://yann300.github.io
+* solidity flattener is useful to combine truffle files into one to load into remix: https://github.com/BlockCatIO/solidity-flattener
+* Parity client seems to be more stable for quick syncing ropsten network
 
 
 # References
