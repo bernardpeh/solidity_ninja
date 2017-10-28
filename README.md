@@ -12,15 +12,31 @@ Solidity looks like javascript but its not and the terminologies can be confusin
 
 * What is Blockchain, Bitcoin and Ethereum.
 
+* Merkle tree, Gossip Network, Consensus.
+
+* EVM, Opcodes, memory management.
+
 * 2 Types of Ethereum Accounts - EOA and CA.
 
 * Transaction vs Messages.
 
 * Gas and GasPrice.
 
+* Ethereum clients - geth and parity.
+
+* Ethereum Wallet - Mist, parity and Metamask.
+
+* Solidity, ABI. Remix and Tuffle.
+
+* Security and Coding Patterns
+
+* Upgradable contracts
+
 ## Exercises
 
-* Send an ether 
+* Using Testrpc, Send x amount of ether from account0 to account1 such that account0 will have 99 ether exactly.
+
+* Base on ethstats.net, calculate max transactions per second of the ethereum network. Check your answer with https://etherchain.org/ 
 
 ## Prerequisites
 
@@ -87,3 +103,4 @@ Private Keys
 * [Solidity Doc](https://solidity.readthedocs.io/en/develop/)
 * [Truffle framework](http://truffleframework.com/docs/getting_started/contracts)
 * [Introduction to Accounts, Transactions and Gas](https://hudsonjameson.com/2017-06-27-accounts-transactions-gas-ethereum/)
+* [Inside a transaction](https://medium.com/@codetractio/inside-an-ethereum-transaction-fa94ffca912f)
