@@ -1,65 +1,24 @@
 # About
 
-ICO for Developers is a short course showcasing the power and limitations of the ethereum programing language - [Solidity](https://solidity.readthedocs.io/en/develop/).
+Solidity Ninja is a short course for learning Solidity.
 
-Other than being a cryptocurrency, the biggest use case for Ethereum at the moment is the ability to launch a Crowd funding app (ICO). 
+This course should be a good learning experience for developers who are new to solidity.
 
-This course will focus on giving you the development skills to launch your ICO. It should be a good learning experience for developers who are new to solidity.
+## Exercises
 
-Try to understand the concepts rather than jumping into the syntax straight away. It would make life a lot easier when you start coding.
+* Using Testrpc, Send x amount of ether from account0 to account1 such that account0 will have 99 ether exactly.
 
-Solidity looks like javascript but its not and the terminologies can be confusing.
+* Base on ethstats.net, calculate max transactions per second of the ethereum network. Check your answer with https://etherchain.org/ 
 
-## Pre-requisites
+## Prerequisites
 
-* Object Oriented programming skills. Javascript knowledge useful but not essential.
+1. Install [truffle](https://github.com/trufflesuite/truffle). 
 
-* Own machine (Mac preferred) with common dev tools installed, ie git, node, npm, ...etc.
+2. Install [testrpc](https://github.com/ethereumjs/testrpc)
 
-You should be able to:
+3. Install [ether explorer](https://github.com/etherparty/explorer)
 
-* Install [truffle](https://github.com/trufflesuite/truffle). 
-
-* Install [testrpc](https://github.com/ethereumjs/testrpc)
-
-* Install [ether explorer](https://github.com/etherparty/explorer)
-
-* git clone git@github.com:bernardpeh/solidity_ninja.git or fork
-
-
-## Course Content
-
-* Blockchain, Bitcoin and Ethereum.
-
-* Merkle tree, Gossip Network, Consensus.
-
-* EVM, Opcodes, memory management.
-
-* 2 Types of Ethereum Accounts - EOA and CA.
-
-* Transaction vs Messages.
-
-* Gas and GasPrice.
-
-* Ethereum Clients - Geth and Parity.
-
-* Ethereum Wallet - Mist, parity and Metamask.
-
-* Basic Solidity walkthrough.
-
-* ABI, Remix and Tuffle.
-
-* Security and Coding Patterns.
-
-* Upgradable Contracts.
-
-* ICOs and Crowdsale Contract.
-
-* Testing and BDD.
-
-* Deploying a real Crowdsale contract to the main Ethereum Network.
-
-* Simple Crowdsale frontend.
+3. git clone git@github.com:bernardpeh/solidity_ninja.git or fork
 
 ## Quick start
 
@@ -104,13 +63,6 @@ Private Keys
 ```
 -> git checkout tut_1 
 ```
-
-## Exercises
-
-* Using Testrpc, Send x amount of ether from account0 to account1 such that account0 will have 99 ether exactly.
-
-* Base on ethstats.net, calculate max transactions per second of the ethereum network. Check your answer with https://etherchain.org/ 
-
 # Tips
 
 * Many people like the old remix browser better:  https://yann300.github.io
