@@ -1,16 +1,35 @@
 # About
 
-Solidity Ninja is a short course showcasing the power and limitations of the ethereum programing language - solidity.
+ICO for Developers is a short course showcasing the power and limitations of the ethereum programing language - [Solidity](https://solidity.readthedocs.io/en/develop/).
 
-This course should be a good learning experience for developers who are new to solidity.
+Other than being a cryptocurrency, the biggest use case for Ethereum at the moment is the ability to launch a Crowd funding app (ICO). 
+
+This course will focus on giving you the development skills to launch your ICO. It should be a good learning experience for developers who are new to solidity.
 
 Try to understand the concepts rather than jumping into the syntax straight away. It would make life a lot easier when you start coding.
 
 Solidity looks like javascript but its not and the terminologies can be confusing.
 
+## Pre-requisites
+
+* Object Oriented programming skills. Javascript knowledge useful but not essential.
+
+* Own machine (Mac preferred) with common dev tools installed, ie git, node, npm, ...etc.
+
+You should be able to:
+
+* Install [truffle](https://github.com/trufflesuite/truffle). 
+
+* Install [testrpc](https://github.com/ethereumjs/testrpc)
+
+* Install [ether explorer](https://github.com/etherparty/explorer)
+
+* git clone git@github.com:bernardpeh/solidity_ninja.git or fork
+
+
 ## Course Content
 
-* What is Blockchain, Bitcoin and Ethereum.
+* Blockchain, Bitcoin and Ethereum.
 
 * Merkle tree, Gossip Network, Consensus.
 
@@ -22,31 +41,25 @@ Solidity looks like javascript but its not and the terminologies can be confusin
 
 * Gas and GasPrice.
 
-* Ethereum clients - geth and parity.
+* Ethereum Clients - Geth and Parity.
 
 * Ethereum Wallet - Mist, parity and Metamask.
 
-* Solidity, ABI. Remix and Tuffle.
+* Basic Solidity walkthrough.
 
-* Security and Coding Patterns
+* ABI, Remix and Tuffle.
 
-* Upgradable contracts
+* Security and Coding Patterns.
 
-## Exercises
+* Upgradable Contracts.
 
-* Using Testrpc, Send x amount of ether from account0 to account1 such that account0 will have 99 ether exactly.
+* ICOs and Crowdsale Contract.
 
-* Base on ethstats.net, calculate max transactions per second of the ethereum network. Check your answer with https://etherchain.org/ 
+* Testing and BDD.
 
-## Prerequisites
+* Deploying a real Crowdsale contract to the main Ethereum Network.
 
-1. Install [truffle](https://github.com/trufflesuite/truffle). 
-
-2. Install [testrpc](https://github.com/ethereumjs/testrpc)
-
-3. Install [ether explorer](https://github.com/etherparty/explorer)
-
-3. git clone git@github.com:bernardpeh/solidity_ninja.git or fork
+* Simple Crowdsale frontend.
 
 ## Quick start
 
@@ -91,6 +104,13 @@ Private Keys
 ```
 -> git checkout tut_1 
 ```
+
+## Exercises
+
+* Using Testrpc, Send x amount of ether from account0 to account1 such that account0 will have 99 ether exactly.
+
+* Base on ethstats.net, calculate max transactions per second of the ethereum network. Check your answer with https://etherchain.org/ 
+
 # Tips
 
 * Many people like the old remix browser better:  https://yann300.github.io
